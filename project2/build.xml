@@ -2,48 +2,56 @@
   <description>
     project2 buildfile
   </description>
-  <!-- set global properties for this build -->
-  <property name="src" location="src"/>
+  <property name="src" location="src/com"/>
   <property name="build" location="build"/>
+  <property name="tests" location="src/tests"/>
   <property name="dist" location="dist"/>
+	
+  <path id="classPath">
+	  <pathelement location="junit.jar" />
+  </path>
 
   <target name="init">
-    <!-- Create the time stamp -->
     <tstamp/>
-    <!-- Create the build directory structure used by compile -->
     <mkdir dir="${build}"/>
+    <mkdir dir="${build}/tests"/>
   </target>
 
-  <target name="compile" depends="init"
-        description="compile the source">
-    <!-- Compile the Java code from ${src} into ${build} -->
-    <javac srcdir="${src}" destdir="${build}"/>
+  <target name="compile" depends="init" description="compile the source">
+  	
+    <javac srcdir="${src}" destdir="${build}">
+  		<classpath refid="classPath"/>
+    </javac>
+  	
+  	<javac srcdir="${tests}" destdir="${build}">
+  	      <classpath refid="classPath"/>
+    </javac> 
+  	
   </target>
 
-  <target name="dist" depends="compile"
-        description="generate the distribution">
-    <!-- Create the distribution directory -->
+  <target name="dist" depends="compile" description="generate the distribution">
     <mkdir dir="${dist}/lib"/>
-
-    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
     <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
   </target>
-	
+
   <target name="test" depends="compile">
-	      <junit>
-	          <formatter type="plain" usefile="false" />
-	          <formatter type="plain" />
-	          <batchtest>
-	              <fileset dir="${build/tests}" includes="**/test*" />
-	          </batchtest>
-	      </junit>
+	  <junit printsummary="true" haltonfailure="true" showoutput="true">
+	      <classpath>
+	          <pathelement path="${src}"/>
+	          <pathelement location="junit.jar"/>
+	      </classpath>
+	      <formatter type="plain" />
+	      <formatter type="brief" usefile="false" />
+	      <batchtest>
+	          <fileset dir="${build}/tests" includes="TestCases.class"/>
+	      </batchtest>
+	  </junit>
   </target>
 
-<!--
-  <target name="clean"
-        description="clean up">
+  
+  <target name="clean" description="clean up">
     <delete dir="${build}"/>
     <delete dir="${dist}"/>
   </target>
--->
+  
 </project>
