@@ -38,7 +38,7 @@
   <target name="test" depends="compile">
 	  <junit printsummary="true" haltonfailure="true" showoutput="true">
 	      <classpath>
-            <pathelement path="${src/tests}"/>
+            <pathelement path="${src}/tests"/>
 	          <fileset dir="${lib}" includes="**/*.jar" />
 	      </classpath>
 	      <formatter type="plain" />
