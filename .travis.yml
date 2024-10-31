@@ -4,3 +4,6 @@ jdk:
 script:
   - ant compile
   - ant test
+addons:
+  apt:
+    - ant-optional
