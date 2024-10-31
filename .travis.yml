@@ -6,4 +6,5 @@ script:
   - ant test
 addons:
   apt:
-    - ant-optional
+    packages:
+      - ant-optional
