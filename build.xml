@@ -9,8 +9,7 @@
   <property name="dist" location="dist"/>
 	
   <path id="classPath">
-	  <pathelement location="${lib}/junit.jar" />
-    <pathelement location="${lib}/ant-junit.jar" />
+	  <fileset dir="${lib}" includes="**/*.jar" />
   </path>
 
   <target name="init">
@@ -40,8 +39,7 @@
 	  <junit printsummary="true" haltonfailure="true" showoutput="true">
 	      <classpath>
 	          <pathelement path="${src}"/>
-	          <pathelement location="${lib}/junit.jar"/>
-            <pathelement location="${lib}/ant-junit.jar"/>
+	          <fileset dir="${lib}" includes="**/*.jar" />
 	      </classpath>
 	      <formatter type="plain" />
 	      <formatter type="brief" usefile="false" />
