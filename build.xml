@@ -44,7 +44,7 @@
 	      <formatter type="plain" />
 	      <formatter type="brief" usefile="false" />
 	      <batchtest>
-	          <fileset dir="${build}/tests" includes="TestCases.class"/>
+	          <fileset dir="${build}/tests" includes="**/*.class"/>
 	      </batchtest>
 	  </junit>
   </target>
