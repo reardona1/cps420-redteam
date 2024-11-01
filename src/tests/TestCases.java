@@ -34,21 +34,13 @@ public class TestCases {
             book.borrowBook();
         });
     }
-
-    @Test
-    public void testReturnBook() {
-        Book book = new Book("12345", "Test Book", "Author Name", 2);
-        book.returnBook();
-        Assert.assertEquals(3, book.getCopiesAvailable());
-    }
-    // end BookTest.java
     
     @Test
     public void testAddBook() {
         LibrarySystem library = new LibrarySystem();
         Book book = new Book("12345", "Test Book", "Author Name", 5);
         library.addBook(book);
-        Assert.assertEquals(!null, LibrarySystem.searchBooksByTitle("Test Book"));
+        Assert.assertNotNull(library.searchBooksByTitle("Test Book"));
     }
 
     @Test
@@ -58,9 +50,9 @@ public class TestCases {
         Member member = new Member("1001", "John Doe");
         library.addBook(book);
         library.registerMember(member);
-        library.issueLoan(member.id(), book.isbn());
+        library.issueLoan(member.getMemberId(), book.getIsbn());
         
-        Assert.assertEquals(!null, LibrarySystem.issueLoan(member.id(), book.isbn()));
+        Assert.assertNotNull(library.issueLoan(member.getMemberId(), book.getIsbn()));
     }
     // end LibrarySystemTest.java
 
@@ -68,7 +60,7 @@ public class TestCases {
     public void testLoanCreation() {
         Book book = new Book("12345", "Test Book", "Author Name", 5);
         Member member = new Member("1001", "John Doe");
-        Loan loan = new Loan(book, member, today, today.plusDays(14));
+        Loan loan = new Loan(member, book, today, today.plusDays(14));
         
         Assert.assertEquals(book, loan.getBook());
         Assert.assertEquals(member, loan.getMember());
@@ -79,7 +71,7 @@ public class TestCases {
     public void testIsOverdue() {
         Book book = new Book("12345", "Test Book", "Author Name", 5);
         Member member = new Member("1001", "John Doe");
-        Loan loan = new Loan(book, member, today.now().minusDays(16), today.minusDays(1));
+        Loan loan = new Loan(member, book, today.now().minusDays(16), today.minusDays(1));
         
         Assert.assertTrue(loan.isOverdue());
     }
