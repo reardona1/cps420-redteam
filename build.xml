@@ -24,7 +24,7 @@
   		<classpath refid="classPath"/>
     </javac>
   	
-  	<javac srcdir="${tests}" destdir="${build}">
+  	<javac srcdir="${tests}" destdir="${build}/tests">
   	      <classpath refid="classPath"/>
     </javac> 
   	
@@ -38,7 +38,8 @@
   <target name="test" depends="compile">
 	  <junit printsummary="true" haltonfailure="true" showoutput="true">
 	      <classpath>
-            <pathelement path="/src/tests"/>
+            <pathelement path="${build}"/>
+            <pathelement path="${build/tests}"/>
 	          <fileset dir="${lib}" includes="**/*.jar" />
 	      </classpath>
 	      <formatter type="plain" />
