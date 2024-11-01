@@ -82,9 +82,10 @@ public class TestCases {
         Member member = new Member("1001", "John Doe");
         Book book1 = new Book("12345", "Book One", "Author Name", 5);
         Book book2 = new Book("67890", "Book Two", "Author Name", 5);
-        Book book3 = new Book("12343", "Book Four", "Author Name", 5);
-        Book book3 = new Book("98758", "Book Five", "Author Name", 5);
-        Book book3 = new Book("11239", "Book Six", "Author Name", 5);
+        Book book3 = new Book("12343", "Book Three", "Author Name", 5);
+        Book book4 = new Book("12355", "Book Four", "Author Name", 5);
+        Book book5 = new Book("98758", "Book Five", "Author Name", 5);
+        Book book6 = new Book("11239", "Book Six", "Author Name", 5);
         
         member.borrowBook(book1);
         member.borrowBook(book2);
