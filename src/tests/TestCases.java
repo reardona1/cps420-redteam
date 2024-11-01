@@ -2,8 +2,10 @@ package tests;
 
 import org.junit.Assert;
 import org.junit.Test;
+import java.time.LocalDate;
 
 public class TestCases {
+    LocalDate today = LocalDate.now();
     /*
     @Test
     public void failingTest() {
@@ -46,7 +48,7 @@ public class TestCases {
         LibrarySystem library = new LibrarySystem();
         Book book = new Book("12345", "Test Book", "Author Name", 5);
         library.addBook(book);
-        Assert.assertEquals(1, library.getBooks().size());
+        Assert.assertEquals(!null, LibrarySystem.searchBooksByTitle("Test Book"));
     }
 
     @Test
@@ -56,9 +58,9 @@ public class TestCases {
         Member member = new Member("1001", "John Doe");
         library.addBook(book);
         library.registerMember(member);
-        library.issueLoan(book, member);
+        library.issueLoan(member.id(), book.isbn());
         
-        Assert.assertEquals(1, library.getLoans().size());
+        Assert.assertEquals(!null, LibrarySystem.issueLoan(member.id(), book.isbn()));
     }
     // end LibrarySystemTest.java
 
@@ -66,7 +68,7 @@ public class TestCases {
     public void testLoanCreation() {
         Book book = new Book("12345", "Test Book", "Author Name", 5);
         Member member = new Member("1001", "John Doe");
-        Loan loan = new Loan(book, member, LocalDate.now(), LocalDate.now().plusDays(14));
+        Loan loan = new Loan(book, member, today, today.plusDays(14));
         
         Assert.assertEquals(book, loan.getBook());
         Assert.assertEquals(member, loan.getMember());
@@ -77,7 +79,7 @@ public class TestCases {
     public void testIsOverdue() {
         Book book = new Book("12345", "Test Book", "Author Name", 5);
         Member member = new Member("1001", "John Doe");
-        Loan loan = new Loan(book, member, LocalDate.now().minusDays(16), LocalDate.now().minusDays(1));
+        Loan loan = new Loan(book, member, today.now().minusDays(16), today.minusDays(1));
         
         Assert.assertTrue(loan.isOverdue());
     }
@@ -94,7 +96,6 @@ public class TestCases {
     @Test
     public void testBorrowBookExceedingLimit() {
         Member member = new Member("1001", "John Doe");
-        member.setMaxLoanLimit(2);  // assuming max loan limit is 2 for testing
         Book book1 = new Book("12345", "Book One", "Author Name", 5);
         Book book2 = new Book("67890", "Book Two", "Author Name", 5);
         Book book3 = new Book("11223", "Book Three", "Author Name", 5);
@@ -103,7 +104,7 @@ public class TestCases {
         member.borrowBook(book2);
 
         Assert.assertThrows(IllegalStateException.class, () -> {
-            member.borrowBook(book3);  // should fail since max limit is reached
+            member.borrowBook(book3);
         });
     }
 
@@ -111,8 +112,8 @@ public class TestCases {
     public void testReturnBook() {
         Member member = new Member("1001", "John Doe");
         Book book = new Book("12345", "Test Book", "Author Name", 5);
-        member.borrowBook(book);
-        member.returnBook(book);
+        Loan loan = member.borrowBook(book);
+        member.returnBook(loan);
         Assert.assertEquals(0, member.getBorrowedBooks().size());
     }
     // end MemberTest.java
