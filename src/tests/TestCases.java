@@ -66,7 +66,7 @@ public class TestCases {
         Assert.assertEquals(member, loan.getMember());
         Assert.assertFalse(loan.isOverdue());
     }
-    
+
     // end LoanTest.java
 
     @Test
@@ -82,7 +82,9 @@ public class TestCases {
         Member member = new Member("1001", "John Doe");
         Book book1 = new Book("12345", "Book One", "Author Name", 5);
         Book book2 = new Book("67890", "Book Two", "Author Name", 5);
-        Book book3 = new Book("11223", "Book Three", "Author Name", 5);
+        Book book3 = new Book("12343", "Book Four", "Author Name", 5);
+        Book book3 = new Book("98758", "Book Five", "Author Name", 5);
+        Book book3 = new Book("11239", "Book Six", "Author Name", 5);
         
         member.borrowBook(book1);
         member.borrowBook(book2);
