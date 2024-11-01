@@ -13,22 +13,22 @@ public class TestCases {
     @Test
     public void testValidBookCreation() {
         Book book = new Book("12345", "Test Book", "Author Name", 5);
-        assertEquals("12345", book.getIsbn());
-        assertEquals("Test Book", book.getTitle());
-        assertEquals(5, book.getCopiesAvailable());
+        Assert.assertEquals("12345", book.getIsbn());
+        Assert.assertEquals("Test Book", book.getTitle());
+        Assert.assertEquals(5, book.getCopiesAvailable());
     }
 
     @Test
     public void testBorrowBookSuccess() {
         Book book = new Book("12345", "Test Book", "Author Name", 3);
         book.borrowBook();
-        assertEquals(2, book.getCopiesAvailable());
+        Assert.assertEquals(2, book.getCopiesAvailable());
     }
 
     @Test
     public void testBorrowBookFailure() {
         Book book = new Book("12345", "Test Book", "Author Name", 0);
-        assertThrows(IllegalStateException.class, () -> {
+        Assert.assertThrows(IllegalStateException.class, () -> {
             book.borrowBook();
         });
     }
@@ -37,7 +37,7 @@ public class TestCases {
     public void testReturnBook() {
         Book book = new Book("12345", "Test Book", "Author Name", 2);
         book.returnBook();
-        assertEquals(3, book.getCopiesAvailable());
+        Assert.assertEquals(3, book.getCopiesAvailable());
     }
     // end BookTest.java
     
@@ -46,7 +46,7 @@ public class TestCases {
         LibrarySystem library = new LibrarySystem();
         Book book = new Book("12345", "Test Book", "Author Name", 5);
         library.addBook(book);
-        assertEquals(1, library.getBooks().size());
+        Assert.assertEquals(1, library.getBooks().size());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class TestCases {
         library.registerMember(member);
         library.issueLoan(book, member);
         
-        assertEquals(1, library.getLoans().size());
+        Assert.assertEquals(1, library.getLoans().size());
     }
     // end LibrarySystemTest.java
 
@@ -68,9 +68,9 @@ public class TestCases {
         Member member = new Member("1001", "John Doe");
         Loan loan = new Loan(book, member, LocalDate.now(), LocalDate.now().plusDays(14));
         
-        assertEquals(book, loan.getBook());
-        assertEquals(member, loan.getMember());
-        assertFalse(loan.isOverdue());
+        Assert.assertEquals(book, loan.getBook());
+        Assert.assertEquals(member, loan.getMember());
+        Assert.assertFalse(loan.isOverdue());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class TestCases {
         Member member = new Member("1001", "John Doe");
         Loan loan = new Loan(book, member, LocalDate.now().minusDays(16), LocalDate.now().minusDays(1));
         
-        assertTrue(loan.isOverdue());
+        Assert.assertTrue(loan.isOverdue());
     }
     // end LoanTest.java
 
@@ -88,7 +88,7 @@ public class TestCases {
         Member member = new Member("1001", "John Doe");
         Book book = new Book("12345", "Test Book", "Author Name", 5);
         member.borrowBook(book);
-        assertEquals(1, member.getBorrowedBooks().size());
+        Assert.assertEquals(1, member.getBorrowedBooks().size());
     }
 
     @Test
@@ -102,7 +102,7 @@ public class TestCases {
         member.borrowBook(book1);
         member.borrowBook(book2);
 
-        assertThrows(IllegalStateException.class, () -> {
+        Assert.assertThrows(IllegalStateException.class, () -> {
             member.borrowBook(book3);  // should fail since max limit is reached
         });
     }
@@ -113,7 +113,7 @@ public class TestCases {
         Book book = new Book("12345", "Test Book", "Author Name", 5);
         member.borrowBook(book);
         member.returnBook(book);
-        assertEquals(0, member.getBorrowedBooks().size());
+        Assert.assertEquals(0, member.getBorrowedBooks().size());
     }
     // end MemberTest.java
 }
