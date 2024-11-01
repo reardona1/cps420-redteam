@@ -94,8 +94,7 @@ public class TestCases {
         member.borrowBook(book5);
         member.borrowBook(book6);
 
-
-        Assert.assertThrows(IllegalStateException.class, () -> {
+        Assert.assertThrows(java.lang.IllegalStateException.class, () -> {
             member.borrowBook(book3);
         });
     }
