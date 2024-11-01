@@ -66,6 +66,7 @@ public class TestCases {
         Assert.assertEquals(member, loan.getMember());
         Assert.assertFalse(loan.isOverdue());
     }
+    
     // end LoanTest.java
 
     @Test
