@@ -114,7 +114,7 @@ public class TestCases {
     
         // Attempt to return a book that the member hasn't borrowed
         Loan loan = new Loan(member, book);
-        Assert.assertThrows(IllegalStateException.class, () -> {
+        Assert.assertThrows(IllegalArgumentException.class, () -> {
             member.returnBook(loan);
         });
     }
