@@ -106,5 +106,17 @@ public class TestCases {
         member.returnBook(loan);
         Assert.assertEquals(0, member.getBorrowedBooks().size());
     }
+
+    @Test
+    public void testReturnBookFailure() {
+        Member member = new Member("1001", "John Doe");
+        Book book = new Book("12345", "Test Book", "Author Name", 5);
+    
+        // Attempt to return a book that the member hasn't borrowed
+        Loan loan = new Loan(member, book);
+        Assert.assertThrows(IllegalStateException.class, () -> {
+            member.returnBook(loan);
+        });
+    }
     // end MemberTest.java
 }
