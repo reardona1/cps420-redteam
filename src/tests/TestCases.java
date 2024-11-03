@@ -99,7 +99,7 @@ public class TestCases {
     }
 
     @Test
-    public void testReturnBook() {
+    public void testReturnBookSuccess() {
         Member member = new Member("1001", "John Doe");
         Book book = new Book("12345", "Test Book", "Author Name", 5);
         Loan loan = member.borrowBook(book);
