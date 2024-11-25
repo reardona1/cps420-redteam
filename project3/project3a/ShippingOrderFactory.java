@@ -1,4 +1,4 @@
-package project3;
+package project3a;
 
 interface ShippingOrderFactory {
 	abstract ShippingOrder createShippingOrder(String orderID, double weight, String destination);
