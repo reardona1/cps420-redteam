@@ -1,10 +1,12 @@
 package project3b;
 
+//mostly taken from the example runner class
+
 public class Client {
 
 	public static void main(String[] args) {
         EducationPlatformFacade platform = new EducationPlatformFacade();
-
+        
         System.out.println("Creating a course:\n");
         
         String courseInfo = "Java Programming";

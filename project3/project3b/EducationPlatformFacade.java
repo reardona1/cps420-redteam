@@ -1,12 +1,14 @@
 package project3b;
 
 public class EducationPlatformFacade {
-
+	
+	//method prototypes
     private AuthenticationSystem authSystem;
     private PaymentSystem paymentSystem;
     private CourseManagementSystem courseManagementSystem;
     private ContentDeliverySystem contentDeliverySystem;
-
+    
+    //Constructor
     public EducationPlatformFacade() {
         authSystem = new AuthenticationSystem();
         paymentSystem = new PaymentSystem();
@@ -14,6 +16,7 @@ public class EducationPlatformFacade {
         contentDeliverySystem = new ContentDeliverySystem();
     }
 
+    //Creates a course and uploads provided content
     public void publishCourse(String courseInfo, String content) {
 
         courseManagementSystem.createCourse(courseInfo);
@@ -23,7 +26,8 @@ public class EducationPlatformFacade {
         System.out.println("Course published: " + courseInfo);
         System.out.println();
     }
-
+    
+    // Creates a student from given information and applies the student to the given course
     public void enrollInCourse(String courseID, String studentCredentials, String paymentDetails) {
     	
         String[] credentials = studentCredentials.split(" : ");
@@ -42,6 +46,7 @@ public class EducationPlatformFacade {
     }
 }
 
+//Authentication methods
 class AuthenticationSystem {
     
     void login(String username, String password) {
@@ -57,6 +62,7 @@ class AuthenticationSystem {
     }
 }
 
+//Payment system methods
 class PaymentSystem {
     
     void processPayment(String paymentDetails) {
@@ -68,6 +74,7 @@ class PaymentSystem {
     }
 }
 
+//Course management system methods
 class CourseManagementSystem {
 
     void createCourse(String courseInfo) {
@@ -87,6 +94,7 @@ class CourseManagementSystem {
     }
 }
 
+//Content Delivery System methods
 class ContentDeliverySystem {
 
     void uploadContent(String content) {

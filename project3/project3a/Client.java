@@ -14,6 +14,7 @@ public class Client {
 
 	}
 	
+	//For each shipping order, this function will run all necessary functions in order to prepare, calculate, and document the process
     public static void processShippingOrder(ShippingOrderFactory factory, String orderID, double weight, String destination) {
 
         ShippingOrder order = factory.createShippingOrder(orderID, weight, destination);
@@ -23,3 +24,4 @@ public class Client {
         order.generateDocumentation();
     }
 }
+

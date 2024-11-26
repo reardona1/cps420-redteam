@@ -1,6 +1,6 @@
 package project3a;
 
-
+//The base abstract ShippingOrder class
 abstract class ShippingOrder {
 	protected String orderID;
 	protected double weight;
@@ -18,29 +18,35 @@ abstract class ShippingOrder {
 	
 }	
 
-
+//All shipping methods use a similar structure, so all comments apply to subsequent functions
 class AirShippingOrder extends ShippingOrder {
+	//declare an internal identification number
 	private String airwayBillNumber;
 	
+	//Sets the variables for this object when created by a factory
     public AirShippingOrder(String orderID, double weight, String destination) {
         super(orderID, weight, destination);
     }
-
+    
+    //Prepares the shipment by creating a unique internal identification number
     public void prepareShipment() {
     	airwayBillNumber = orderID + "-AIR";
         System.out.println("Preparing Air Shipment: " + airwayBillNumber);
     }
-
+    
+    //Calculates the cost of shipping via this method, using simple example calculations
     public void calculateCost() {
         double cost = weight * 5.0;
         System.out.println("Air Shipping Cost: $" + cost);
     }
-
+    
+   //Prints out a receipt that confirms all entered information
    public void generateDocumentation() {
         System.out.println("Shipment #" + airwayBillNumber + ", Desitnation: " + destination + ", Weight: " + weight + ", has been processed\n");
     }
 }
 
+//identical operation to previous
 class SeaShippingOrder extends ShippingOrder {
     private String billOfLanding;
 
@@ -63,6 +69,7 @@ class SeaShippingOrder extends ShippingOrder {
     }
 }
 
+//identical operation to previous
 class LandShippingOrder extends ShippingOrder {
     private String deliveryTruckID;
 

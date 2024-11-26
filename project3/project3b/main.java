@@ -1,5 +1,8 @@
 package project3b;
 
+//This file was taken as an example runner file from the project description
+//In order to run the code, simply run the main function in "client.java"
+
 public class main {
 	
 	public static void main (String [] args) {
